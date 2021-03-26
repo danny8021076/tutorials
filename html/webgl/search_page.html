@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+	var xmlhttp = new XMLHttpRequest();
+	var url = "https://emma.pixnet.cc/mainpage/tags/%E5%8B%95%E6%BC%AB?page=1&per_page=10&api_version=2&format=json";
+
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var myArr = JSON.parse(xmlhttp.responseText);
+			myFunction(myArr);
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+	function myFunction(arr) {
+		var data = arr.articles;
+		var out = "";
+		var i;
+		for (i = 0; i < data.length; i++) {
+			if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+			if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + data[i].title + '</a></p>';
+			out += '<p> </p>';
+			if ( data[i].tags.length != 0 )
+			   {
+				out += '<p>Tags: ';
+				for (j = 0; j < data[i].tags.length; j++) {
+					out += data[i].tags[j].tag + ', ';
+				}
+				out += '</p>';
+			   }
+			out += '<br /><br /><br />';
+		}
+		document.getElementById("pixnet-stuff").innerHTML = out;
+	}
+	</script>
+</head>
+<body>
+	<div id="pixnet-stuff">
+	</div>
+</body>
+</html>

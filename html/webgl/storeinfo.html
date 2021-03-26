@@ -1,0 +1,125 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  
+		<meta charset="utf-8">
+		<title>店家資訊</title>
+		<meta name="viewport" content="width=device-width">
+
+		<!-- 利用Tabletop.JS讀取Google Sheet https://github.com/jsoma/tabletop -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+		<script type='text/javascript'> 
+		  var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1kTSge5HAgOU6YvCD2kmzJlWEIfhSA06B6mXzN623-xQ/pubhtml';
+		  function init() {
+			Tabletop.init( { key: publicSpreadsheetUrl,
+							 callback: showInfo,
+							 simpleSheet: true } )
+		  }
+
+		  function showInfo(data, tabletop) {
+			console.log(data);
+			
+			for (i=0;i<data.length;i++){
+			document.getElementById("demo").innerHTML+= '    <div class="col s12 m4">' +
+														'      <div class="card  small">' +
+														'        <div class="card-image">' +
+														'          <img src="' + data[i].Logo + '">' +
+
+														'        </div>' +
+														'        <div class="card-content">' +
+														'          <p class="flow-text">' + data[i].name + '</p>' +
+														'        </div>' +
+														'        <div class="card-action">' +
+														'          <a href="storeinfo_card.html?id=' + i + '">' + '點我看介紹' + '</a>' +
+														'        </div>' +
+														'      </div>' +
+														'    </div>'
+			}
+		  }
+	 
+		  window.addEventListener('DOMContentLoaded', init)
+		</script>
+		
+		
+		
+	  <script type = "text/javascript">
+		 function GetUrlVar(VarName)   
+		{  
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");  
+		var regexS = "[\\?&]" + VarName + "=([^&#]*)";  
+		var regex = new RegExp(regexS);  
+		var results = regex.exec(window.location.href);  
+		if (results == null)  
+			return "";  
+		else  
+			return results[1];  
+		}  
+		
+	</script>
+	
+	<style>
+	.card:hover{
+		margin-right:10px;
+	}
+	</style>
+	
+    </head>
+
+    <body>
+
+	  <nav>
+		<div class="nav-wrapper  blue darken-4">
+		  <a href="#!" class="header" id="year"></a>
+		  <a href="index.html" class="header">回上一頁</a>
+
+		  <ul class="right hide-on-med-and-down">
+			<li><a><i class="material-icons">search</i></a></li>
+			<li><form action="http://www.google.com/search" method="get"><input type="text" placeholder="Search" name="q"></form></li>
+			<li><a href="index.html"><i class="material-icons">refresh</i></a></li>
+			<li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+		  </ul>
+		</div>
+	  </nav>
+	  
+	  	<div style="background-color:#F0E68C;padding:21px;">
+			<div style="background-color:white;padding:20px;">
+				<div class="row" id = "demo"></div>
+			</div>
+		</div>
+
+
+        <footer class="page-footer  light-blue accent-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">本網站用於整理資訊</h5>
+                <p class="grey-text text-lighten-4">如果有想要新增的網站可以回報</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">相關連結</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://www.ccpa.org.tw/tica/index.php?tpl=8">官網</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/tca.tw/">FB</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+  </html>

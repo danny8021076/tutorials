@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<head>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+      <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	  
+	  <meta charset="utf-8">
+	  <title>台北國際動漫節</title>
+	  <style type="text/css">
+		.menu {
+		width:100%;
+		margin: 0 auto;
+		}
+		.menu ul {
+		padding:0;
+		margin:0;
+		list-style-type: none;
+		}
+		.menu ul li {
+		float:left;
+		position:relative;
+		}
+		.menu ul li a, .menu ul li a:visited {
+		display: block;
+		text-align: center;
+		text-decoration: none;
+		width: 120px;
+		height: 60px;
+		color: #fff;
+		background: #64b5f6;
+		line-height: 60px;
+		font-size: 20px;
+		}
+		.menu ul li ul {
+		display: none;
+		}
+		.menu ul li:hover a {
+		color: #fff;
+		background: #222;
+		}
+		.menu ul li:hover ul {
+		display:block;
+		position:absolute;
+		top:61px;
+		left:0;
+		width:105px;
+		}
+		.menu ul li:hover ul li a {
+		display: block;
+		background: #9e9e9e ;
+		color: #fff;
+		}
+		.menu ul li:hover ul li a:hover {
+		background: #424242 ;
+		color: #fafafa ;
+		}
+	  </style>
+	  <script>
+		var xmlhttp = new XMLHttpRequest();
+		var url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=PL3zOo1Z159awN5pkoRIqFoVX0EbeqjmfL&key=AIzaSyAmx1RfcFUAflSQ3kKlJc8ZdMsKQRv3DuY&maxResults=50";
+
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var myArr = JSON.parse(xmlhttp.responseText);
+				myFunction(myArr);
+			}
+		}
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+
+		function myFunction(arr) {
+			var data = arr.items;
+			var out = "";
+			var i;
+			for (i = 0; i < data.length; i++) {
+				out += '<img src="' + data[i].snippet.thumbnails.medium.url + '" />';
+				out += '<p><a href="https://youtu.be/' + data[i].snippet.resourceId.videoId + '" target="_blank">' + data[i].snippet.title + '</a></p>';
+				out += '<p> </p>';
+			}
+			document.getElementById("youtube-playlist").innerHTML = out;
+		}
+	  </script>
+</head>
+<body onload="init()">
+
+	  <nav>
+			<div class="nav-wrapper  blue darken-4">
+			  <a href="#!" class="header" id="year"></a>
+			  <a href="https://www.facebook.com/tca.tw/" class="header">台北國際動漫節</a>
+
+			  <ul class="right hide-on-med-and-down">
+				<li><a><i class="material-icons">search</i></a></li>
+				<li><form action="http://www.google.com/search" method="get"><input type="text" placeholder="Search" name="q"></form></li>
+				<li><a href="index.html"><i class="material-icons">refresh</i></a></li>
+				<li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+			  </ul>
+			</div>
+			
+			<div class="nav-wrapper  blue lighten-2">
+				<div class="head-container">
+					<div class="logo" style="float:left">
+						<h5 class="title">
+							<a href="index.html">首頁</a>
+						</h5>
+					</div>
+					<div  class="menu">
+						<ul>
+							<li>
+								<a href="#">攻略</a>
+								<ul>
+									<li>
+										<a href="https://a841121.pixnet.net/blog/post/44139561">簡單上手</a>
+									</li>
+									<li>
+										<a href="https://cha2130286.pixnet.net/blog/post/206570981">入門講解2</a>
+									</li>
+									<li>
+										<a href="https://www.google.com.tw/search?safe=off&hl=zh-TW&sxsrf=ACYBGNRgevqQGoWVgiinhx1nYU8XsukkXg%3A1578385160108&source=hp&ei=CD8UXseEBJWXr7wPsdSu0A8&q=%E5%8F%B0%E5%8C%97%E5%9C%8B%E9%9A%9B%E5%8B%95%E6%BC%AB%E7%AF%80+%E7%A6%8F%E8%A2%8B&oq=%E5%8F%B0%E5%8C%97%E5%9C%8B%E9%9A%9B%E5%8B%95%E6%BC%AB%E7%AF%80+%E7%A6%8F%E8%A2%8B&gs_l=psy-ab.3..35i39.1004.1004..2373...1.0..0.40.40.1......0....2j1..gws-wiz.qSuuleL6oIs&ved=0ahUKEwjHqKP2hvHmAhWVy4sBHTGqC_oQ4dUDCAg&uact=5">其他相關</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">地圖</a>
+								<ul>
+									<li>
+										<a href="map.html">活動地點</a>
+									</li>
+									<li>
+										<a href="https://www.google.com.tw/maps?saddr=24.121308,120.677175&daddr=25.056602,121.6159273">交通路線</a>
+									</li>
+									<li>
+										<a href="#">攤位圖</a>
+									</li>
+									
+								</ul>
+							</li>
+							<li><a href="storeinfo.html">店家資訊</a></li>
+							<li>
+								<a href="#">回報</a>
+								<ul>
+									<li>
+										<a href="https://docs.google.com/forms/d/e/1FAIpQLSdDCwjywhZC_r2v92prEcHzyzj2CKwq9lIxWGy2hpUEIQ9D2w/viewform">新增店家</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+	  </nav>
+	  
+		<div class="row">
+			<div style="float:left">
+				<img src="https://www.ccpa.org.tw/tica/images/file/data326077/data326077.png" width="100%">
+			</div>
+		</div>
+
+        <footer class="page-footer  light-blue accent-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+				<iframe height="200px"  src="http://www.youtube.com/embed/kyBqq_Ibdvg?autoplay=1&loop=1&playlist=kyBqq_Ibdvg" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="col l4 offset-l2 s12">
+				<h5 class="white-text">本網站用於整理資訊</h5>
+                <p class="grey-text text-lighten-4">如果有想要新增的網站可以回報</p>
+                <h5 class="white-text">相關連結</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://www.ccpa.org.tw/tica/index.php?tpl=8">官網</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/tca.tw/">FB</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Chinese Animation & Comic Publishers Association. All Rights Reserved.
+            </div>
+          </div>
+        </footer>
+</body>
+<!-- AIzaSyAmx1RfcFUAflSQ3kKlJc8ZdMsKQRv3DuY-->
+<script>
+	
+	main();
+	function init() {
+		nowyear()
+	}
+
+	
+	function GetUrlVar(VarName)   {  
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");  
+		var regexS = "[\\?&]" + VarName + "=([^&#]*)";  
+		var regex = new RegExp(regexS);  
+		var results = regex.exec(window.location.href);  
+		if (results == null)  
+			return "";  
+		else  
+			return results[1];  
+		}  
+	function nowyear() {
+		var d = new Date();
+		var n = d.getFullYear();
+		document.getElementById("year").innerHTML = n;
+	}
+	
+	function getLocation() {
+	  if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	  } else { 
+		x.innerHTML = "Geolocation is not supported by this browser.";
+	  }
+	}
+	function showPosition(position) {
+	  x.innerHTML.href ='https://www.google.com.tw/maps?saddr='+position.coords.latitude+','+position.coords.longitude+'&daddr=25.033155,121.5601583'
+	}
+	
+
+
+	</script>
+</script>
